@@ -3,6 +3,7 @@ import Noga from "../Noga/Noga";
 import {Link} from "react-router-dom";
 import React from "react";
 import {seznamEkip} from "../../Naloga1/Main";
+import Button from "react-bootstrap/Button";
 
 export default function SeznamEkip() {
 
@@ -13,11 +14,11 @@ export default function SeznamEkip() {
             <ul className="list-group">
                 {seznamEkip.map((ekipa, index) => {
                     return (
-                        <li className="list-group-item"><Link to={"/seznamEkip/" + ekipa.id}>{ekipa.ime}</Link></li>
+                        <li className="list-group-item"><Link key={index} to={"/seznamEkip/" + ekipa.id}>{ekipa.ime}</Link></li>
                     );
                 })}
             </ul>
-
+            <Link to={"/dodajEkipo"}>Dodaj ekipo</Link>
             <Noga/>
         </>
     );

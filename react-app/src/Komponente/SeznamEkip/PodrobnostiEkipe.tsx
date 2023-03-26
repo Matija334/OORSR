@@ -17,7 +17,7 @@ export default function PodrobnostiEkipe() {
                 <Telo id={ekipa.id} letoUstanovitve={ekipa.letoUstanovitve} direktor={ekipa.direktor}
                       trener={ekipa.trener}
                       igralci={ekipa.igralci}/>
-                <Noga/>
+                <Noga />
             </>
         );
     } else {

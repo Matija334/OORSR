@@ -5,6 +5,7 @@ import Domov from "./Komponente/Domov/Domov";
 import StranNeObstaja from "./Komponente/StranNeObstaja/StranNeObstaja";
 import SeznamEkip from "./Komponente/SeznamEkip/SeznamEkip";
 import PodrobnostiEkipe from "./Komponente/SeznamEkip/PodrobnostiEkipe";
+import DodajEkipo from "./Komponente/SeznamEkip/DodajEkipo";
 
 
 function App() {
@@ -22,6 +23,16 @@ function App() {
         {
             path: '/seznamEkip/:ekipaId',
             element: <PodrobnostiEkipe/>,
+            errorElement: <StranNeObstaja/>,
+        },
+        {
+            path: '/dodajEkipo',
+            element: <DodajEkipo />,
+            errorElement: <StranNeObstaja/>,
+        },
+        {
+            path: '*',
+            element: <StranNeObstaja />,
             errorElement: <StranNeObstaja/>,
         },
     ]);
