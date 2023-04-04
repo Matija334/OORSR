@@ -28,20 +28,20 @@ const initialState = {
 export default function Telo({id, letoUstanovitve, direktor, trener, igralci}: EkipaProps) {
     const [igralciSeznam, setIgralciSeznam] = useState<Igralec[]>(igralci);
 
-    const [igralec, setigralec] = useState<Igralec>(initialState);
+    const [igralec, setIgralec] = useState<Igralec>(initialState);
 
     const handleSubmit = (event: { preventDefault: () => void; }) => {
         event.preventDefault();
         igralec.id = igralciSeznam.length
         igralciSeznam.push(igralec);
 
-        setigralec(initialState);
+        setIgralec(initialState);
     };
 
     const handleChange = (e: { target: { value: any; name: any; }; }) => {
         const { value, name } = e.target;
 
-        setigralec((prevState: Igralec) => {
+        setIgralec((prevState: Igralec) => {
             return {
                 ...prevState,
                 [name]: value,

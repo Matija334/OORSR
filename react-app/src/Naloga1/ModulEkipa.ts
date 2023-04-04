@@ -1,5 +1,14 @@
 import {Funkcionar, Igralec} from "./ModulOseba";
 
+interface EkipaInterface {
+    id: number;
+    ime: string;
+    letoUstanovitve: number;
+    direktor: Funkcionar
+    trener: Funkcionar
+    igralci: Igralec[]
+}
+
 class Ekipa {
     static _id: number = 0;
     id: number;
@@ -51,5 +60,5 @@ class Ekipa {
         return podatki;
     }
 }
-
 export {Ekipa}
+export type {EkipaInterface}

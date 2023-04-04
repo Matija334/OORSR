@@ -12,12 +12,10 @@ export default function PodrobnostiEkipe() {
     if(ekipa) {
         return (
             <>
-                <Navigacija/>
                 <h1>Podrobnosti ekipe - {ekipa.ime}</h1>
                 <Telo id={ekipa.id} letoUstanovitve={ekipa.letoUstanovitve} direktor={ekipa.direktor}
                       trener={ekipa.trener}
                       igralci={ekipa.igralci}/>
-                <Noga />
             </>
         );
     } else {
