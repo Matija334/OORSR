@@ -14,40 +14,14 @@ interface EkipaProps {
     igralci: Igralec[];
 }
 
-const initialState = {
-    id: -1,
-    ime: '',
-    priimek: '',
-    letoRojstva: Number(''),
-    krajRojstva: '',
-    visina: Number(''),
-    teza: Number(''),
-    poskodovan: false
-};
-
 export default function Telo({id, letoUstanovitve, direktor, trener, igralci}: EkipaProps) {
     const [igralciSeznam, setIgralciSeznam] = useState<Igralec[]>(igralci);
 
-    const [igralec, setIgralec] = useState<Igralec>(initialState);
-
-    const handleSubmit = (event: { preventDefault: () => void; }) => {
-        event.preventDefault();
-        igralec.id = igralciSeznam.length
-        igralciSeznam.push(igralec);
-
-        setIgralec(initialState);
-    };
-
-    const handleChange = (e: { target: { value: any; name: any; }; }) => {
-        const { value, name } = e.target;
-
-        setIgralec((prevState: Igralec) => {
-            return {
-                ...prevState,
-                [name]: value,
-            };
-        });
-    };
+    const handleAdd = (igralec: Igralec) => {
+        setIgralciSeznam((prevState: Igralec[]) =>{
+            return [...prevState, igralec];
+        })
+    }
 
     return (
         <>
@@ -83,7 +57,7 @@ export default function Telo({id, letoUstanovitve, direktor, trener, igralci}: E
                 })}
                 </tbody>
             </table>
-            <DodajIgralca igralec={igralec} handleSubmit={handleSubmit} handleChange={handleChange}/>
+            <DodajIgralca onAdd={handleAdd}/>
         </>
     )
 }

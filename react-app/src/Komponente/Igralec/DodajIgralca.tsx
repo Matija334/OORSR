@@ -4,18 +4,51 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import {Col, Row} from "react-bootstrap";
 import './DodajIgralca.css'
-
 interface Props {
-    igralec: Igralec,
-    handleSubmit: (event: { preventDefault: () => void; }) => void;
-    handleChange: (e: { target: { value: any; name: any; }; }) => void;
-
+    onAdd: (igralec: Igralec) => void;
 }
 
-export default function DodajIgralca({igralec, handleSubmit, handleChange}: Props) {
+const initialState = {
+    id: -1,
+    ime: '',
+    priimek: '',
+    letoRojstva: Number(''),
+    krajRojstva: '',
+    visina: Number(''),
+    teza: Number(''),
+    poskodovan: false
+};
+
+export default function DodajIgralca(props: Props) {
+    const [igralec, setIgralec] = useState<Igralec>(initialState);
+    const handleSubmit = (event: { preventDefault: () => void; }) => {
+        event.preventDefault();
+        props.onAdd(igralec);
+        setIgralec(initialState)
+    };
+
+    const handleChange = (e: { target: { value: any; name: any; }; }) => {
+        const { value, name } = e.target;
+
+        setIgralec((prevState: Igralec) => {
+            return {
+                ...prevState,
+                [name]: value,
+            };
+        });
+    };
 
     return (
         <Form onSubmit={handleSubmit}>
+            <Form.Group as={Row} controlId="formId">
+                <Form.Label column sm="2">
+                    Številka dresa
+                </Form.Label>
+                <Col sm="10">
+                    <Form.Control required={true} type="text" placeholder="ID" name="id" value={igralec.id} onChange={handleChange} />
+                </Col>
+            </Form.Group>
+
             <Form.Group as={Row} controlId="formIgralec">
                 <Form.Label column sm="2">
                     Ime
